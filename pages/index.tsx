@@ -27,6 +27,7 @@ const App: React.FC = () => {
 
 console.log(todos);
 
+
     return (
         <div className={styles.App} >
             <span className={styles.heading} >Task List Pro</span>
