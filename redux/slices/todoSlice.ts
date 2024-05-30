@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface MyAppTodo {
+export interface MyAppTodo {
     id: number;
     todo: string;
+    isDone: boolean;
    
 }
 

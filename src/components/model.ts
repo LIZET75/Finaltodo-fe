@@ -1,11 +1,12 @@
-export interface Todo{
-    id:number;
-    todo:string;
-    isDone:boolean;
-}
+import { MyAppTodo } from "../../redux/slices/todoSlice";
+
+// export interface Todo{
+//     id:number;
+//     todo:string;
+//     isDone:boolean;
+// }
 
 export type Props = {
-    todo:Todo,
-    todos: Todo[],
-    setTodos:React.Dispatch<React.SetStateAction<Todo[]>>
+    todo:MyAppTodo,
+    todos: MyAppTodo[]
 }
