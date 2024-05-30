@@ -1,14 +1,15 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { Todo } from './model';
+// import { Todo } from './model';
 import SingleTodo from './SingleTodo';
+import { MyAppTodo } from '../../redux/slices/todoSlice';
 
 
 interface Props{
- todos:   Todo[];
- setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
+ todos:   MyAppTodo[];
+ 
 }    
-const TodoList:React.FC<Props> = ({todos,setTodos}:Props) => {
+const TodoList:React.FC<Props> = ({todos}:Props) => {
   return (
     <div className={styles.todos}>       
 
@@ -19,7 +20,6 @@ const TodoList:React.FC<Props> = ({todos,setTodos}:Props) => {
             todo={todo} 
             key={todo.id}
             todos={todos}
-            setTodos={setTodos}
             />
 
         ))}

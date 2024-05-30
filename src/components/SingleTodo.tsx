@@ -1,22 +1,23 @@
 
-import { Props, Todo } from './model'
+import { Props  } from './model'
 import styles from './styles.module.css'
 import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
 import { MdDone, } from 'react-icons/md'
 // import TodoList from './TodoList'
 import React, { useEffect, useRef, useState }  from "react";
+import { deleteTodo } from '../../redux/slices/todoSlice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store/store';
 
 
 
 
-const SingleTodo = ({ todo, todos, setTodos }:Props) => {
+const SingleTodo = ({ todo, todos }:Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
   const handleDone = (id:number) => {
-    setTodos(
-      todos.map(( todo) => 
-        todo.id===id?{...todo,isDone:!todo.isDone}:todo)
-    )
+    //update todo
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,17 +27,17 @@ const SingleTodo = ({ todo, todos, setTodos }:Props) => {
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-    setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
-    );
+    
+    // add edit to do
     setEdit(false);
   };
 
   const handleDelete = (id:number) => {
-    setTodos(
-      todos.filter(( todo) => 
-        todo.id !==id));
-  };
+    console.log('Deleting user...');
+    dispatch(deleteTodo(id));
+};
+    
+
 
 
   return (

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react'
 import styles from './styles.module.css'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store/store';
+import { createTodo } from '../../redux/slices/todoSlice';
 interface Props {
   todo:string;
   setTodo:React.Dispatch<React.SetStateAction<string>>;
@@ -8,10 +11,12 @@ interface Props {
 
 const Inputbar:React.FC<Props> = ({todo, setTodo, handleAdd}) => {
  const inputRef = useRef<HTMLInputElement>(null);
+ const dispatch = useDispatch<AppDispatch>();
  
   return (
     <form className={styles.input}  onSubmit={(e)=>{
-      handleAdd(e)
+      handleAdd(e);
+      dispatch(createTodo({todo:todo}))
       inputRef.current?.blur}}>
       <input 
       type="input" 
