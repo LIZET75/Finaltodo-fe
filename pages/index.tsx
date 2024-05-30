@@ -40,7 +40,7 @@ console.log(todos);
 
     return (
         <div className={styles.App} >
-            <span className={styles.heading} >Task List Pro</span>
+            <span className={styles.heading} >Task List Pro Current Version</span>
             <Inputbar  todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
 
             <TodoList todos={todos}  />

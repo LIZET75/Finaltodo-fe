@@ -5,7 +5,7 @@ import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
 import { MdDone, } from 'react-icons/md'
 // import TodoList from './TodoList'
 import React, { useEffect, useRef, useState }  from "react";
-import { deleteTodo } from '../../redux/slices/todoSlice';
+import { deleteTodo, updateTodo } from '../../redux/slices/todoSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store/store';
 
@@ -17,7 +17,10 @@ const SingleTodo = ({ todo, todos }:Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
   const handleDone = (id:number) => {
-    //update todo
+    if ( id !=null) {
+      //condition
+      dispatch(updateTodo({ id, isdone:true }));
+    }
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +47,7 @@ const SingleTodo = ({ todo, todos }:Props) => {
     <form className={styles.todos_single}>
       {edit ? (
             <input value = {editTodo} onChange={(e)=>setEditTodo(e.target.value)} className={styles.todos__single_text}/>
-        ):todo.isDone? (
+        ):todo.isdone? (
           <s className={styles.todos__single_text}>{todo.todo}</s>
         ) : (
         <span className={styles.todos__single_text}>{todo.todo}</span>
@@ -56,7 +59,7 @@ const SingleTodo = ({ todo, todos }:Props) => {
       <div>
       <span className={styles.icon} 
       onClick={()=>{
-        if(!edit && !todo.isDone) {
+        if(!edit && !todo.isdone) {
         setEdit(!edit);
       }
     }}

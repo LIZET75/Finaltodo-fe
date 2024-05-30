@@ -4,7 +4,7 @@ import axios from 'axios';
 export interface MyAppTodo {
     id: number;
     todo: string;
-    isDone: boolean;
+    isdone: boolean;
    
 }
 
@@ -95,13 +95,7 @@ const todoSlice = createSlice({
 
 });
 
-// AsyncThunk to fetch current todo, using the ID
-/* TODO: Do an axios get request to 
-    http://localhost:3000/todos
-    to fetch all todos.
-    Follow the other AsyncThunks as examples
-    Extra credit, if you add try and catch
-*/
+
 export const fetchAllTodos = createAsyncThunk<MyAppTodo[]>('todo/fetchAllTodos', async () => {
     try {
         const responce = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/todos`);
